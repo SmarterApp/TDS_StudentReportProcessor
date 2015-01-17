@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security/oauth2  http://www.springframework.org/schema/security/spring-security-oauth2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:annotation-config />
+
+	<context:property-placeholder location="classpath:settings.xml" ignore-unresolvable="true" order="900" local-override="true"/>
+
+	<import resource="classpath:opentestsystem.shared.common-context-module.xml" />
+	<import resource="classpath:opentestsystem.shared.tr-api-context-module.xml" />
+	<import resource="classpath:opentestsystem.shared.db-context-module.xml" />
+	
+	<bean id="tdsSettings" class="TDS.Shared.Configuration.TDSSettingsNoWeb" scope="prototype" />
+	<bean id="iCommonDLL" class="tds.dll.mysql.CommonDLL" scope="singleton" />
+	<bean id="iProctorDLL" class="tds.dll.mysql.ProctorDLL" scope="singleton" />
+	<bean id="iRtsDLL" class="tds.dll.mysql.RtsPackageDLL" scope="singleton" />
+	<bean id="iReportingDLL" class="tds.dll.mysql.ReportingDLL" scope="singleton" > 
+		<property name="tisUrl" value="${reportingDLL.tisUrl}" />
+		<property name="tisStatusCallbackUrl" value="${reportingDLL.tisStatusCallbackUrl}" />
+		<property name="tisWaitTime" value="${reportingDLL.tisWaitTime}" />
+		<property name="tisMaxWaitTime" value="${reportingDLL.tisMaxWaitTime}" />
+	</bean>
+	<bean id="abstractDateUtilDll" class="tds.dll.mysql.DateUtilDLL" scope="singleton" />
+
+	<bean id="studentReportProcessor" class="org.opentestsystem.delivery.studentreportprocessor.StudentReportProcessor" />
+	
+	<bean id="applicationDataSource" destroy-method="close"	class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.userName}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="abstractConnectionManager" class="AIR.Common.DB.AbstractConnectionManager">
+		<property name="databaseDialect" value="${DBDialect}" />
+		<property name="dataSource" ref="applicationDataSource" />
+	</bean>
+	
+	<bean id="iTdsRestClient" class="TDS.Shared.Web.client.TdsRestClient" >
+	    <constructor-arg index="0" ref="restTemplate" />
+	</bean>
+	
+    <bean id="clientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+        <property name="connectTimeout" value="20000"/>
+        <property name="readTimeout" value="60000"/>
+    </bean>
+
+    <bean class="org.springframework.security.oauth2.client.OAuth2RestTemplate" id="restTemplate">
+       <constructor-arg ref="tisResource"/>
+       <property name="requestFactory" ref="trClientHttpRequestFactory" />
+    </bean>
+    
+  	<oauth2:client id="oauth2ClientFilter" />
+
+    <oauth2:resource id="tisResource"
+        type="password"
+        client-authentication-scheme="form"
+        client-id="${oauth.tis.client.id}"
+        client-secret="${oauth.tis.client.secret}"
+        access-token-uri="${oauth.access.url}"
+        username="${oauth.tis.username}"
+        password="${oauth.tis.password}"
+     />
+    
+    
+</beans>
