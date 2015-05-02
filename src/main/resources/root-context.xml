@@ -38,6 +38,12 @@
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.userName}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="idleConnectionTestPeriod" value="300" />
+		<property name="testConnectionOnCheckout" value="false" />
+		<property name="testConnectionOnCheckin" value="false" />
+		<property name="checkoutTimeout" value="60000" />
+		<property name="maxConnectionAge" value="0" />
+		<property name="acquireRetryAttempts" value="5" />
 	</bean>
 	
 	<bean id="abstractConnectionManager" class="AIR.Common.DB.AbstractConnectionManager">
