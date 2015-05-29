@@ -41,6 +41,16 @@ In general, build the code and deploy the JAR file. Run the jar file as backgrou
     -classpath ".:/jar/file/path/to/tdsMaintenance.jar:/mysql/connector/path/mysql-connector-java-5.1.22-bin.jar" org.opentestsystem.delivery.studentreportprocessor.StudentReportProcessor
 
 ```
+## Database Configuration
+For populating academicYear inside the XML Report, configure schoolyear column acoording to current year inside `itembank`.`tbltestadmin` table.
+This column needs to be updated every year.
+
+```
+Example:
+UPDATE `itembank`.`tbltestadmin` SET `schoolyear`='2015' WHERE `_key`='SBAC';
+UPDATE `itembank`.`tbltestadmin` SET `schoolyear`='2015' WHERE `_key`='SBAC_PT';
+```
+
 
 ### Build Order
 
