@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opentestsystem.delivery</groupId>
 	<artifactId>StudentReportProcessor</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.opentestsystem.shared</groupId>
 		<artifactId>shared-master</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.1-BUILD-SNAPSHOT</version>
 	</parent>
 
 	<licenses>
@@ -84,7 +84,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.opentestsystem.delivery.studentreportprocessor_release.StudentReportProcessor</mainClass>
+									<mainClass>org.opentestsystem.delivery.studentreportprocessor.StudentReportProcessor</mainClass>
 								</transformer>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">

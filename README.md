@@ -16,12 +16,12 @@ We would be happy to receive feedback on its capabilities, problems, or future e
 
 ### Java
 
-Essentially, this is a Java standalone application.
+Essentially, this is a standalone Java application.
 
 For each record in qareportqueue table that has a datesent value of null, send the XML report associated with the test opportunity for that record and then delete that record.
 
 ## Setup
-In general, build the code and deploy the JAR file. Run the jar file as background process. Create a start up script to run the application on machine reboot and another script to monitor the application and starts it up if the program is not running.
+In general, build the code and deploy the JAR file. Run the JAR file as background process. Create a startup script to run the application on machine reboot and another script to monitor the application and start it up if it is not running.
 
 ```
 /usr/bin/java \
@@ -42,7 +42,7 @@ In general, build the code and deploy the JAR file. Run the jar file as backgrou
 
 ```
 ## Database Configuration
-For populating academicYear inside the XML Report, configure schoolyear column acoording to current year inside `itembank`.`tbltestadmin` table.
+For populating academicYear inside the XML Report, configure schoolyear column according to current year inside `itembank`.`tbltestadmin` table.
 This column needs to be updated every year.
 
 ```
