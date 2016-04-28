@@ -25,8 +25,8 @@ In general, build the code and deploy the JAR file. Run the jar file as backgrou
 
 ```
 /usr/bin/java \
-    -DreportingDLL.tisUrl="<TIS URL>" \
-    -DreportingDLL.tisStatusCallbackUrl="<TIS Status Callback URL>" \
+    -DreportingDLL.tisUrl="<TIS BASE URL>/api/testresult" \
+    -DreportingDLL.tisStatusCallbackUrl="<TDS STUDENT BASE URL>/tisReply" \
     -Doauth.tis.client.id="<Oauth Client ID>" \
     -Doauth.tis.client.secret="<Oauth Client Secret>" \
     -Doauth.tis.username="<Oauth Username>" \
