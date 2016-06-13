@@ -8,8 +8,7 @@ This project is licensed under the [AIR Open Source License v1.0](http://www.sma
 ## Getting Involved ##
 We would be happy to receive feedback on its capabilities, problems, or future enhancements:
 
-* For general questions or discussions, please use the [Forum](http://forum.opentestsystem.org/viewforum.php?f=9).
-* Use the **Issues** link to file bugs or enhancement requests.
+* For general questions or discussions, please use the [Forum](http://forum.smarterbalanced.org/viewforum.php?f=9).
 * Feel free to **Fork** this project and develop your changes!
 
 ## Module Overview
@@ -25,8 +24,8 @@ In general, build the code and deploy the JAR file. Run the JAR file as backgrou
 
 ```
 /usr/bin/java \
-    -DreportingDLL.tisUrl="<TIS URL>" \
-    -DreportingDLL.tisStatusCallbackUrl="<TIS Status Callback URL>" \
+    -DreportingDLL.tisUrl="<TIS BASE URL>/api/testresult" \
+    -DreportingDLL.tisStatusCallbackUrl="<TDS STUDENT BASE URL>/tisReply" \
     -Doauth.tis.client.id="<Oauth Client ID>" \
     -Doauth.tis.client.secret="<Oauth Client Secret>" \
     -Doauth.tis.username="<Oauth Username>" \
