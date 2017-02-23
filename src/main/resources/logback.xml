@@ -1,0 +1,6 @@
+<configuration scan="true">
+	<property scope="local" name="app.context.name" value="student-report-processor" />
+	<property scope="local" name="app.base.package.name" value="org.opentestsystem.delivery.studentreportprocessor" />
+
+	<include resource="logback-included-common-config.xml" />
+</configuration>
