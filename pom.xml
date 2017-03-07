@@ -7,10 +7,11 @@
 	<artifactId>StudentReportProcessor</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
+
 	<parent>
 		<groupId>org.opentestsystem.shared</groupId>
 		<artifactId>shared-master</artifactId>
-		<version>1.0.1-BUILD-SNAPSHOT</version>
+		<version>3.0.1</version>
 	</parent>
 
 	<licenses>
@@ -22,6 +23,10 @@
 		</license>
 	</licenses>
 
+	<properties>
+		<tds-dll.version>3.0.0</tds-dll.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.opentestsystem.shared</groupId>
@@ -31,11 +36,15 @@
 		<dependency>
 			<groupId>org.opentestsystem.delivery</groupId>
 			<artifactId>tds-dll-api</artifactId>
+			<version>${tds-dll.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.opentestsystem.delivery</groupId>
 			<artifactId>tds-dll-mysql</artifactId>
+			<version>${tds-dll.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.opentestsystem.shared</groupId>
 			<artifactId>shared-tr-api</artifactId>
